@@ -2,7 +2,7 @@
 
 #include "DBConnection.hpp"
 
-int MySqlDBConnection::query()
+int MySqlDBConnection::query() const
 {
 	return 3;
 }
