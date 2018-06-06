@@ -1,38 +1,18 @@
 #include "gtest/gtest.h"
 #include "../src/DBConnection.hpp"
-#include "../src/Queries.hpp"
 
 namespace
 {
-    TEST(TypesConversionQueriesTesting, SelectQuery)
+    int getConnectionInfo(const IDBConnection& connection)
     {
-        auto* connection = new MySqlDBConnection();
-        auto* selectQuery = new SelectQuery();
-
-        ASSERT_EQ(connection->query(selectQuery, QueryType::SELECT), QueryResult::SUCCESS);
+        assert(dynamic_cast<const MySqlDBConnection*>(&connection));
+        auto& con = static_cast<const MySqlDBConnection&>(connection);
+        return con.advancedQuery();
     }
 
-    TEST(TypesConversionQueriesTesting, UpdateQuery)
+    TEST(ConversionTest, StaticCast)
     {
-        auto* connection = new MySqlDBConnection();
-        auto* updateQuery = new UpdateQuery();
-
-        ASSERT_EQ(connection->query(updateQuery, QueryType::UPDATE), QueryResult::SUCCESS);
-    }
-
-    TEST(DoubleDispatchQueriesTesting, SelectQuery)
-    {
-        auto* connection = new MySqlDBConnection();
-        auto* selectQuery = new SelectQuery();
-
-        ASSERT_EQ(connection->query(selectQuery), QueryResult::SUCCESS);
-    }
-
-    TEST(DoubleDispatchQueriesTesting, UpdateQuery)
-    {
-        auto* connection = new MySqlDBConnection();
-        auto* updateQuery = new UpdateQuery();
-
-        ASSERT_EQ(connection->query(updateQuery), QueryResult::SUCCESS);
+        MySqlDBConnection connection;
+        ASSERT_EQ(4, getConnectionInfo(connection));
     }
 }

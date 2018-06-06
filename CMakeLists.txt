@@ -7,6 +7,6 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic -Wextra")
 add_subdirectory(test/lib/googletest)
 include_directories(test/lib/googletest/googletest/include)
 
-add_executable(DoubleDispatch src/DBConnection.hpp src/Queries.hpp src/DBConnection.cpp src/Queries.cpp test/DispatchTest.cpp)
+add_executable(DoubleDispatch src/DBConnection.hpp src/DBConnection.cpp test/DispatchTest.cpp)
 
 target_link_libraries(DoubleDispatch gtest gtest_main)
