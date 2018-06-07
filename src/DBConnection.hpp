@@ -1,5 +1,4 @@
-#ifndef PLAYGROUND_IDBCONNECTION_HPP
-#define PLAYGROUND_IDBCONNECTION_HPP
+#pragma once
 
 class IDBConnection
 {
@@ -13,5 +12,3 @@ public:
 	int query() const override;
 	int advancedQuery() const;
 };
-
-#endif //PLAYGROUND_IDBCONNECTION_HPP
