@@ -25,3 +25,13 @@ Run in project root to build debug version with clang
 To build release version with gcc run the following command
 
 `RUN mkdir build-gcc-release && cd build-gcc-release && cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc)`
+
+## Run ##
+
+Run from build directory
+
+`ctest`
+
+or
+
+`ctest TypeConversionTest`
