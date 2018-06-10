@@ -2,12 +2,10 @@
 
 #include "DBConnection.hpp"
 
-int MySqlDBConnection::query() const
-{
+int MySqlDBConnection::query() const {
 	return 3;
 }
 
-int MySqlDBConnection::advancedQuery() const
-{
+int MySqlDBConnection::advancedQuery() const {
 	return 4;
 }
