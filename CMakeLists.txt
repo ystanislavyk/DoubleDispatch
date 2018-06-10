@@ -15,7 +15,7 @@ include(CTest)
 
 set(SRC_LIST "src/DBConnection.cpp" "src/DBConnection.hpp")
 
-add_executable(testrunner "${SRC_LIST}" test/TypeConversionTest.cpp)
+add_executable(testrunner "${SRC_LIST}" test/ConnectionTest.cpp)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

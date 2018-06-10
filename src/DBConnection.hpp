@@ -11,6 +11,8 @@ struct Info
 class IDBConnection
 {
 public:
+	virtual ~IDBConnection() = default;
+
 	virtual int query() const = 0;
 };
 
