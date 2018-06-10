@@ -16,8 +16,15 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 target_include_directories(testrunner PRIVATE src test)
 
+add_subdirectory(submodules/gtest)
+
+
+
+
 target_compile_options(testrunner PRIVATE -Wextra -pedantic)
 
 target_link_libraries(testrunner PRIVATE gtest gtest_main)
 
 add_test(NAME TypeConversionTest COMMAND testrunner)
+
+
