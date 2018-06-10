@@ -4,7 +4,12 @@ project(DoubleDispatch VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Manage dependencies
+if (UNIX)
+    set(GTEST_MAIN_LIBRARY /usr/lib)
+endif ()
+
+enable_testing()
+find_package(GTest REQUIRED)
 
 include(CTest)
 

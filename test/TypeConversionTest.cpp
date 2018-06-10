@@ -1,18 +1,28 @@
+#include <cassert>
 #include <gtest/gtest.h>
 
-#include "../src/DBConnection.hpp"
+#include "DBConnection.hpp"
 
-int getConnectionInfo(const IDBConnection& dbConnection)
+int getConnectionInfo(const IDBConnection& idbConnection)
 {
-    if (dynamic_cast<const MySqlDBConnection*>(&dbConnection))
-    {
-        auto& connection = static_cast<const MySqlDBConnection&>(dbConnection);
-        return connection.advancedQuery();
-    }
+    return idbConnection.query();
 }
 
-TEST(ConversionTest, StaticCast)
+std::string getConnectionAdvancedInfo(const IDBConnection& dbConnection)
 {
-    MySqlDBConnection connection;
-    ASSERT_EQ(4, getConnectionInfo(connection));
+    assert(dynamic_cast<const MySqlDBConnection*>(&dbConnection));
+    auto& connection = static_cast<const MySqlDBConnection&>(dbConnection);
+    return connection.advancedQuery().serverVersion;
+}
+
+TEST(ConnectionInfoTest, GetInfo)
+{
+    MySqlDBConnection connection("5.5.8 MySQL Community Server (GPL)", 10);
+    ASSERT_EQ(10, getConnectionInfo(connection));
+}
+
+TEST(ConnectionInfoTest, GetAdvancedInfo)
+{
+    MySqlDBConnection connection("5.5.8 MySQL Community Server (GPL)", 10);
+    ASSERT_EQ("5.5.8 MySQL Community Server (GPL)", getConnectionAdvancedInfo(connection));
 }
