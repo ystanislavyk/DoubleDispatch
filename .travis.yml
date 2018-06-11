@@ -1,0 +1,3 @@
+language: cpp
+
+script: mkdir build-clang-debug && cd build-clang-debug && cmake .. && make -j$(nproc)
