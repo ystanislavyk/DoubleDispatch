@@ -24,7 +24,7 @@ int MySqlDBConnection2::query() const {
 	return info.protocolVersion;
 }
 
-const Info &MySqlDBConnection2::advancedQuery() const {
+Info MySqlDBConnection2::advancedQuery() const {
 	return info;
 }
 
@@ -32,7 +32,7 @@ int MySqlDBConnection2::sendQuery(const QueryReceiver& queryReceiver) const {
 	return queryReceiver.receiveQuery(*this);
 }
 
-const Info &MySqlDBConnection2::sendAdvancedQuery(const QueryReceiver& queryReceiver) const {
+Info MySqlDBConnection2::sendAdvancedQuery(const QueryReceiver& queryReceiver) const {
 	return queryReceiver.receiveAdvancedQuery(*this);
 }
 
@@ -40,6 +40,6 @@ int QueryReceiver::receiveQuery(const MySqlDBConnection2& connection) const {
 	return connection.query();
 }
 
-const Info &QueryReceiver::receiveAdvancedQuery(const MySqlDBConnection2& connection) const {
+Info QueryReceiver::receiveAdvancedQuery(const MySqlDBConnection2& connection) const {
 	return connection.advancedQuery();
 }
