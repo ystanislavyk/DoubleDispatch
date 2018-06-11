@@ -7,8 +7,8 @@ struct Info
     Info() : serverVersion(""), protocolVersion(0) {};
     ~Info() = default;
 
-	std::string serverVersion;
-	int protocolVersion;
+    std::string serverVersion;
+    int protocolVersion;
 };
 
 class IDBConnection
@@ -28,7 +28,7 @@ public:
     Info advancedQuery() const;
 
 private:
-	Info info;
+    Info info;
 };
 
 class QueryReceiver;
