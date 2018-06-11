@@ -13,7 +13,7 @@ int MySqlDBConnection::query() const
 	return info.protocolVersion;
 }
 
-const Info& MySqlDBConnection::advancedQuery() const
+Info MySqlDBConnection::advancedQuery() const
 {
 	return info;
 }
