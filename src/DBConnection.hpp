@@ -4,11 +4,8 @@
 
 struct Info
 {
-    Info() : serverVersion(""), protocolVersion(0) {};
-    ~Info() = default;
-
-    std::string serverVersion;
-    int protocolVersion;
+    std::string serverVersion{""};
+    int protocolVersion{0};
 };
 
 class IDBConnection
