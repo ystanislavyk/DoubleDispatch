@@ -1,14 +1,26 @@
 #pragma once
 
-class IDBConnection
-{
-public:
-	virtual int query() const = 0;
+#include <string>
+
+struct Info {
+    std::string serverVersion{""};
+    int protocolVersion{0};
 };
 
-class MySqlDBConnection : public IDBConnection
-{
+class IDBConnection {
 public:
-	int query() const override;
-	int advancedQuery() const;
+    virtual ~IDBConnection() = default;
+
+    virtual int query() const = 0;
+};
+
+class MySqlDBConnection : public IDBConnection {
+public:
+    explicit MySqlDBConnection(std::string serverVersion, int protocolVersion);
+
+    int query() const override;
+    Info advancedQuery() const;
+
+private:
+    Info info;
 };

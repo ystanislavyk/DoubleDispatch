@@ -5,6 +5,7 @@ Example of use "Double Dispatch" pattern to avoid `static_cast` restrictions
 ## Platform ##
 
 * Linux
+* macOS
 
 ## Requirements ##
 

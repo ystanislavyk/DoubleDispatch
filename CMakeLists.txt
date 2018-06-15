@@ -4,13 +4,16 @@ project(DoubleDispatch VERSION 1.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
-# Manage dependencies
+set(GTEST_MAIN_LIBRARY /usr/lib)
+
+enable_testing()
+find_package(GTest REQUIRED)
 
 include(CTest)
 
 set(SRC_LIST "src/DBConnection.cpp" "src/DBConnection.hpp")
 
-add_executable(testrunner "${SRC_LIST}" test/TypeConversionTest.cpp)
+add_executable(testrunner "${SRC_LIST}" test/ConnectionTest.cpp)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

@@ -1,13 +1,16 @@
-#include <cassert>
+#include <utility>
 
 #include "DBConnection.hpp"
 
-int MySqlDBConnection::query() const
-{
-	return 3;
+MySqlDBConnection::MySqlDBConnection(std::string serverVersion, int protocolVersion) {
+	info.serverVersion = std::move(serverVersion);
+	info.protocolVersion = protocolVersion;
 }
 
-int MySqlDBConnection::advancedQuery() const
-{
-	return 4;
+int MySqlDBConnection::query() const {
+	return info.protocolVersion;
+}
+
+Info MySqlDBConnection::advancedQuery() const {
+	return info;
 }
