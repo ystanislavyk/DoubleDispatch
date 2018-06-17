@@ -1,3 +1,5 @@
+https://travis-ci.org/Morheit/DoubleDispatch.svg?branch=master
+
 # DoubleDispatch #
 
 Example of use "Double Dispatch" pattern to avoid `static_cast` restrictions
