@@ -9,5 +9,5 @@ before_install:
   - docker build -t build_ref -f dockerImage .
 
 script: 
-  - docker run build_ref /bin/bash -c "mkdir build-clang-debug && cd build-clang-debug && cmake .. && make -j$(nproc)"
-  - docker run build_ref /bin/bash -c "mkdir build-gcc-release && cd build-gcc-release && cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc)"
+  - docker run build_ref /bin/bash -c "mkdir build-clang-debug && cd build-clang-debug && cmake .. && make -j$(nproc) && ctest"
+  - docker run build_ref /bin/bash -c "mkdir build-gcc-release && cd build-gcc-release && cmake -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc) && ctest"
