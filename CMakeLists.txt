@@ -8,6 +8,7 @@ set(GTEST_MAIN_LIBRARY /usr/lib)
 
 enable_testing()
 find_package(GTest REQUIRED)
+find_package(Threads REQUIRED)
 
 include(CTest)
 
@@ -21,6 +22,6 @@ target_include_directories(testrunner PRIVATE src test)
 
 target_compile_options(testrunner PRIVATE -Wextra -pedantic)
 
-target_link_libraries(testrunner PRIVATE gtest gtest_main)
+target_link_libraries(testrunner PRIVATE gtest gtest_main ${CMAKE_THREAD_LIBS_INIT})
 
 add_test(NAME TypeConversionTest COMMAND testrunner)
