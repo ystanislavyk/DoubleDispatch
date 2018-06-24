@@ -11,7 +11,7 @@ find_package(GTest REQUIRED)
 
 include(CTest)
 
-set(SRC_LIST "src/DBConnection.cpp" "src/DBConnection.hpp" src/DBConnection2.cpp src/DBConnection2.hpp test/ConnectionTest2.cpp src/ConnectionDispatcher.cpp src/ConnectionDispatcher.hpp)
+set(SRC_LIST "src/DBConnection.cpp" "src/DBConnection.hpp" src/DBConnection2.cpp src/DBConnection2.hpp src/ConnectionDispatcher.cpp src/ConnectionDispatcher.hpp)
 
 add_executable(testrunner "${SRC_LIST}" test/ConnectionTest.cpp test/ConnectionTest2.cpp)
 
