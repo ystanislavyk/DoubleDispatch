@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include "DBConnection2.hpp"
 
 class ConnectionDispatcher {
