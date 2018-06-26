@@ -3,8 +3,8 @@
 #include "ConnectionDispatcher.hpp"
 
 MySqlDBConnection2::MySqlDBConnection2(std::string serverVersion, int protocolVersion) {
-    info.serverVersion = std::move(serverVersion);
-    info.protocolVersion = protocolVersion;
+    m_info.serverVersion = std::move(serverVersion);
+    m_info.protocolVersion = protocolVersion;
 }
 
 void MySqlDBConnection2::dispatch(const ConnectionDispatcher& connectionDispatcher) const {
@@ -12,9 +12,9 @@ void MySqlDBConnection2::dispatch(const ConnectionDispatcher& connectionDispatch
 }
 
 int MySqlDBConnection2::query() const {
-    return info.protocolVersion;
+    return m_info.protocolVersion;
 }
 
 Info MySqlDBConnection2::advancedQuery() const {
-    return info;
+    return m_info;
 }

@@ -3,14 +3,14 @@
 #include "DBConnection.hpp"
 
 MySqlDBConnection::MySqlDBConnection(std::string serverVersion, int protocolVersion) {
-	info.serverVersion = std::move(serverVersion);
-	info.protocolVersion = protocolVersion;
+	m_info.serverVersion = std::move(serverVersion);
+	m_info.protocolVersion = protocolVersion;
 }
 
 int MySqlDBConnection::query() const {
-	return info.protocolVersion;
+	return m_info.protocolVersion;
 }
 
 Info MySqlDBConnection::advancedQuery() const {
-	return info;
+	return m_info;
 }
