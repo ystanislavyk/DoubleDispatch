@@ -9,9 +9,9 @@ public:
     ConnectionDispatcher() = default;
     ~ConnectionDispatcher();
 
-    void dispatchConnection(const MySqlDBConnection2& connection) const;
-    const MySqlDBConnection2& getMySqlConnection() const;
+    void dispatchConnection(MySqlDBConnection2& connection);
+    MySqlDBConnection2& getMySqlConnection() const;
 
 private:
-    mutable std::unique_ptr<const MySqlDBConnection2> m_connection;
+    std::unique_ptr<MySqlDBConnection2> m_connection;
 };

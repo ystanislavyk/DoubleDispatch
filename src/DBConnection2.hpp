@@ -8,7 +8,7 @@ class IDBConnection2 {
 public:
     virtual ~IDBConnection2() = default;
 
-    virtual void dispatch(const ConnectionDispatcher& connectionDispatcher) const = 0;
+    virtual void dispatch(ConnectionDispatcher& connectionDispatcher) = 0;
     virtual int query() const = 0;
 };
 
@@ -17,7 +17,7 @@ public:
     MySqlDBConnection2() = default;
     explicit MySqlDBConnection2(std::string serverVersion, int protocolVersion);
 
-    void dispatch(const ConnectionDispatcher& connectionDispatcher) const override;
+    void dispatch(ConnectionDispatcher& connectionDispatcher) override;
     int query() const override;
 
     Info advancedQuery() const;

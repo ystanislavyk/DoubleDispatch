@@ -7,7 +7,7 @@ MySqlDBConnection2::MySqlDBConnection2(std::string serverVersion, int protocolVe
     m_info.protocolVersion = protocolVersion;
 }
 
-void MySqlDBConnection2::dispatch(const ConnectionDispatcher& connectionDispatcher) const {
+void MySqlDBConnection2::dispatch(ConnectionDispatcher& connectionDispatcher) {
     connectionDispatcher.dispatchConnection(*this);
 }
 

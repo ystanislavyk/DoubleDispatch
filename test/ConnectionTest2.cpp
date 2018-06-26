@@ -5,13 +5,13 @@
 
 namespace {
 
-    int getConnection2Info(const IDBConnection2& dbConnection) {
+    int getConnection2Info(IDBConnection2& dbConnection) {
         ConnectionDispatcher connectionDispatcher;
         dbConnection.dispatch(connectionDispatcher);
         return connectionDispatcher.getMySqlConnection().query();
     }
 
-    std::string getConnection2AdvancedInfo(const IDBConnection2& dbConnection) {
+    std::string getConnection2AdvancedInfo(IDBConnection2& dbConnection) {
         ConnectionDispatcher connectionDispatcher;
         dbConnection.dispatch(connectionDispatcher);
         return connectionDispatcher.getMySqlConnection().advancedQuery().serverVersion;
