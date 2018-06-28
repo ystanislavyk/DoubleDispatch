@@ -6,12 +6,15 @@
 
 class ConnectionDispatcher {
 public:
-    ConnectionDispatcher() = default;
-    ~ConnectionDispatcher();
+    ConnectionDispatcher() : m_mysql_connection(nullptr), m_sqlite_connection(nullptr) {};
 
-    void dispatchConnection(MySqlDBConnection2& connection);
-    MySqlDBConnection2& getMySqlConnection() const;
+    void dispatch(MySqlDBConnection2& connection);
+    void dispatch(SqLiteDBConnection2& connection);
+
+    MySqlDBConnection2* getMySqlConnection() const;
+    SqLiteDBConnection2* getSqLiteConnection() const;
 
 private:
-    std::unique_ptr<MySqlDBConnection2> m_connection;
+    MySqlDBConnection2* m_mysql_connection;
+    SqLiteDBConnection2* m_sqlite_connection;
 };

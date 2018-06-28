@@ -1,4 +1,3 @@
-#include <iostream>
 #include "DBConnection2.hpp"
 #include "ConnectionDispatcher.hpp"
 
@@ -7,8 +6,8 @@ MySqlDBConnection2::MySqlDBConnection2(std::string serverVersion, int protocolVe
     m_info.protocolVersion = protocolVersion;
 }
 
-void MySqlDBConnection2::dispatch(ConnectionDispatcher& connectionDispatcher) {
-    connectionDispatcher.dispatchConnection(*this);
+void MySqlDBConnection2::connect(ConnectionDispatcher& connectionDispatcher) {
+    connectionDispatcher.dispatch(*this);
 }
 
 int MySqlDBConnection2::query() const {
@@ -17,4 +16,17 @@ int MySqlDBConnection2::query() const {
 
 Info MySqlDBConnection2::advancedQuery() const {
     return m_info;
+}
+
+SqLiteDBConnection2::SqLiteDBConnection2(std::string serverVersion, int protocolVersion) {
+    m_info.serverVersion = std::move(serverVersion);
+    m_info.protocolVersion = protocolVersion;
+}
+
+void SqLiteDBConnection2::connect(ConnectionDispatcher& connectionDispatcher) {
+    connectionDispatcher.dispatch(*this);
+}
+
+int SqLiteDBConnection2::query() const {
+    return m_info.protocolVersion;
 }
