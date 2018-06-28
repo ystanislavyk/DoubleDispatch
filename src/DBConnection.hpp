@@ -22,5 +22,5 @@ public:
     Info advancedQuery() const;
 
 private:
-    Info info;
+    Info m_info;
 };
