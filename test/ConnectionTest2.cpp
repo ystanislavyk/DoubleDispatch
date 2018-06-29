@@ -6,36 +6,36 @@
 namespace {
 
     int getMySqlConnection2Info(IDBConnection2& dbConnection) {
-        ConnectionDispatcher connectionDispatcher;
-        dbConnection.connect(connectionDispatcher);
+        MySqlConnectionDispatcher mySqlConnectionDispatcher;
+        dbConnection.connect(mySqlConnectionDispatcher);
 
-        if (nullptr == connectionDispatcher.getMySqlConnection()) {
+        if (nullptr == mySqlConnectionDispatcher.connection()) {
             return 0;
         }
 
-        return connectionDispatcher.getMySqlConnection()->query();
+        return mySqlConnectionDispatcher.connection()->query();
     }
 
     std::string getMySqlConnection2AdvancedInfo(IDBConnection2& dbConnection) {
-        ConnectionDispatcher connectionDispatcher;
-        dbConnection.connect(connectionDispatcher);
+        MySqlConnectionDispatcher mySqlConnectionDispatcher;
+        dbConnection.connect(mySqlConnectionDispatcher);
 
-        if (nullptr == connectionDispatcher.getMySqlConnection()) {
+        if (nullptr == mySqlConnectionDispatcher.connection()) {
             return std::string();
         }
 
-        return connectionDispatcher.getMySqlConnection()->advancedQuery().serverVersion;
+        return mySqlConnectionDispatcher.connection()->advancedQuery().serverVersion;
     }
 
     int getSqLiteConnection2Info(IDBConnection2& dbconnection) {
-        ConnectionDispatcher connectionDispatcher;
-        dbconnection.connect(connectionDispatcher);
+        SqLiteConnectionDispatcher sqLiteConnectionDispatcher;
+        dbconnection.connect(sqLiteConnectionDispatcher);
 
-        if (nullptr == connectionDispatcher.getSqLiteConnection()) {
+        if (nullptr == sqLiteConnectionDispatcher.connection()) {
             return 0;
         }
 
-        return connectionDispatcher.getSqLiteConnection()->query();
+        return sqLiteConnectionDispatcher.connection()->query();
     }
 
     TEST(MySqlDBConnection2Test, GetInfoTest) {

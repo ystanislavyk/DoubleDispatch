@@ -2,13 +2,13 @@
 
 #include "DBConnection.hpp"
 
-class ConnectionDispatcher;
+class IConnectionDispatcher;
 
 class IDBConnection2 {
 public:
     virtual ~IDBConnection2() = default;
 
-    virtual void connect(ConnectionDispatcher& connectionDispatcher) = 0;
+    virtual void connect(IConnectionDispatcher& connectionDispatcher) = 0;
     virtual int query() const = 0;
 };
 
@@ -17,7 +17,7 @@ public:
     MySqlDBConnection2() = default;
     explicit MySqlDBConnection2(std::string serverVersion, int protocolVersion);
 
-    void connect(ConnectionDispatcher& connectionDispatcher) override;
+    void connect(IConnectionDispatcher& connectionDispatcher) override;
     int query() const override;
 
     Info advancedQuery() const;
@@ -31,7 +31,7 @@ public:
     SqLiteDBConnection2() = default;
     explicit SqLiteDBConnection2(std::string serverVersion, int protocolVersion);
 
-    void connect(ConnectionDispatcher& connectionDispatcher) override;
+    void connect(IConnectionDispatcher& connectionDispatcher) override;
     int query() const override;
 
 private:

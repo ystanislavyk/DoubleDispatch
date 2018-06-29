@@ -6,7 +6,7 @@ MySqlDBConnection2::MySqlDBConnection2(std::string serverVersion, int protocolVe
     m_info.protocolVersion = protocolVersion;
 }
 
-void MySqlDBConnection2::connect(ConnectionDispatcher& connectionDispatcher) {
+void MySqlDBConnection2::connect(IConnectionDispatcher& connectionDispatcher) {
     connectionDispatcher.dispatch(*this);
 }
 
@@ -23,7 +23,7 @@ SqLiteDBConnection2::SqLiteDBConnection2(std::string serverVersion, int protocol
     m_info.protocolVersion = protocolVersion;
 }
 
-void SqLiteDBConnection2::connect(ConnectionDispatcher& connectionDispatcher) {
+void SqLiteDBConnection2::connect(IConnectionDispatcher& connectionDispatcher) {
     connectionDispatcher.dispatch(*this);
 }
 
