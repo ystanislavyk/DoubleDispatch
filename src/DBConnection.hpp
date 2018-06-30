@@ -1,10 +1,15 @@
 #pragma once
 
 #include <string>
+#include <utility>
 
 struct Info {
-    std::string serverVersion{""};
-    int protocolVersion{0};
+    Info() = default;
+    explicit Info(std::string serverVersion, int protocolVersion) :
+            server_version(std::move(serverVersion)), protocol_version(protocolVersion) {};
+
+    std::string server_version{""};
+    int protocol_version{0};
 };
 
 class IDBConnection {
@@ -16,7 +21,8 @@ public:
 
 class MySqlDBConnection : public IDBConnection {
 public:
-    explicit MySqlDBConnection(std::string serverVersion, int protocolVersion);
+    explicit MySqlDBConnection(std::string serverVersion, int protocolVersion) :
+            m_info{std::move(serverVersion), protocolVersion} {};
 
     int query() const override;
     Info advancedQuery() const;

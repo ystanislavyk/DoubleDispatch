@@ -6,60 +6,60 @@
 namespace {
 
     int getMySqlConnection2Info(IDBConnection2& dbConnection) {
-        MySqlConnectionDispatcher mySqlConnectionDispatcher;
-        dbConnection.connect(mySqlConnectionDispatcher);
+        MySqlConnectionDispatcher mysql_connection_dispatcher;
+        dbConnection.dispatch(mysql_connection_dispatcher);
 
-        if (nullptr == mySqlConnectionDispatcher.connection()) {
+        if (nullptr == mysql_connection_dispatcher.connection()) {
             return 0;
         }
 
-        return mySqlConnectionDispatcher.connection()->query();
+        return mysql_connection_dispatcher.connection()->query();
     }
 
     std::string getMySqlConnection2AdvancedInfo(IDBConnection2& dbConnection) {
-        MySqlConnectionDispatcher mySqlConnectionDispatcher;
-        dbConnection.connect(mySqlConnectionDispatcher);
+        MySqlConnectionDispatcher mysql_connection_dispatcher;
+        dbConnection.dispatch(mysql_connection_dispatcher);
 
-        if (nullptr == mySqlConnectionDispatcher.connection()) {
+        if (nullptr == mysql_connection_dispatcher.connection()) {
             return std::string();
         }
 
-        return mySqlConnectionDispatcher.connection()->advancedQuery().serverVersion;
+        return mysql_connection_dispatcher.connection()->advancedQuery().server_version;
     }
 
-    int getSqLiteConnection2Info(IDBConnection2& dbconnection) {
-        SqLiteConnectionDispatcher sqLiteConnectionDispatcher;
-        dbconnection.connect(sqLiteConnectionDispatcher);
+    int getSqLiteConnection2Info(IDBConnection2& dbConnection) {
+        SqLiteConnectionDispatcher sqlite_connection_dispatcher;
+        dbConnection.dispatch(sqlite_connection_dispatcher);
 
-        if (nullptr == sqLiteConnectionDispatcher.connection()) {
+        if (nullptr == sqlite_connection_dispatcher.connection()) {
             return 0;
         }
 
-        return sqLiteConnectionDispatcher.connection()->query();
+        return sqlite_connection_dispatcher.connection()->query();
     }
 
     TEST(MySqlDBConnection2Test, GetInfoTest) {
-        MySqlDBConnection2 connection("4.2.2 MySQL Server", 10);
-        SqLiteDBConnection2 connection2("SQLite server", 2);
+        MySqlDBConnection2 mysql_connection("4.2.2 MySQL Server", 10);
+        SqLiteDBConnection2 sqlite_connection("SQLite server", 2);
 
-        ASSERT_EQ(10, getMySqlConnection2Info(connection));
-        ASSERT_EQ(0, getMySqlConnection2Info(connection2));
+        ASSERT_EQ(10, getMySqlConnection2Info(mysql_connection));
+        ASSERT_EQ(0, getMySqlConnection2Info(sqlite_connection));
     }
 
     TEST(MySqlDBConnection2Test, GetAdvancedInfo) {
-        MySqlDBConnection2 connection("4.2.2 MySQL Server", 10);
-        SqLiteDBConnection2 connection2("SQLite server", 2);
+        MySqlDBConnection2 mysql_connection("4.2.2 MySQL Server", 10);
+        SqLiteDBConnection2 sqlite_connection("SQLite server", 2);
 
-        ASSERT_EQ("4.2.2 MySQL Server", getMySqlConnection2AdvancedInfo(connection));
-        ASSERT_EQ("", getMySqlConnection2AdvancedInfo(connection2));
+        ASSERT_EQ("4.2.2 MySQL Server", getMySqlConnection2AdvancedInfo(mysql_connection));
+        ASSERT_EQ("", getMySqlConnection2AdvancedInfo(sqlite_connection));
     }
 
     TEST(SqLiteDBConnection2Test, GetInfoTest) {
-        SqLiteDBConnection2 connection("Some SQLite server", 7);
-        MySqlDBConnection2 connection2("Some SQL server", 8);
+        SqLiteDBConnection2 sqlite_connection("Some SQLite server", 7);
+        MySqlDBConnection2 mysql_connection("Some SQL server", 8);
 
-        ASSERT_EQ(7, getSqLiteConnection2Info(connection));
-        ASSERT_EQ(0, getSqLiteConnection2Info(connection2));
+        ASSERT_EQ(7, getSqLiteConnection2Info(sqlite_connection));
+        ASSERT_EQ(0, getSqLiteConnection2Info(mysql_connection));
     }
 
 }

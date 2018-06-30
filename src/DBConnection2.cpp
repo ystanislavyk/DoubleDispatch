@@ -1,32 +1,22 @@
 #include "DBConnection2.hpp"
 #include "ConnectionDispatcher.hpp"
 
-MySqlDBConnection2::MySqlDBConnection2(std::string serverVersion, int protocolVersion) {
-    m_info.serverVersion = std::move(serverVersion);
-    m_info.protocolVersion = protocolVersion;
-}
-
-void MySqlDBConnection2::connect(IConnectionDispatcher& connectionDispatcher) {
-    connectionDispatcher.dispatch(*this);
+void MySqlDBConnection2::dispatch(IConnectionDispatcher& connectionDispatcher) {
+    connectionDispatcher.connect(*this);
 }
 
 int MySqlDBConnection2::query() const {
-    return m_info.protocolVersion;
+    return m_info.protocol_version;
 }
 
 Info MySqlDBConnection2::advancedQuery() const {
     return m_info;
 }
 
-SqLiteDBConnection2::SqLiteDBConnection2(std::string serverVersion, int protocolVersion) {
-    m_info.serverVersion = std::move(serverVersion);
-    m_info.protocolVersion = protocolVersion;
-}
-
-void SqLiteDBConnection2::connect(IConnectionDispatcher& connectionDispatcher) {
-    connectionDispatcher.dispatch(*this);
+void SqLiteDBConnection2::dispatch(IConnectionDispatcher& connectionDispatcher) {
+    connectionDispatcher.connect(*this);
 }
 
 int SqLiteDBConnection2::query() const {
-    return m_info.protocolVersion;
+    return m_info.protocol_version;
 }
