@@ -8,6 +8,7 @@ set(GTEST_MAIN_LIBRARY /usr/lib)
 
 enable_testing()
 find_package(GTest REQUIRED)
+find_package(Threads REQUIRED)
 
 include(CTest)
 
