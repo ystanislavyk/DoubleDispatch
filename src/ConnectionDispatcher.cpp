@@ -1,18 +1,18 @@
 #include "ConnectionDispatcher.hpp"
 
-void MySqlConnectionDispatcher::connect(MySqlDBConnection2& connection) {
+void MySqlConnectionDispatcher::dispatch(MySqlDBConnection2 &connection) {
     m_mysql_connection = &connection;
 }
 
-void MySqlConnectionDispatcher::connect(SqLiteDBConnection2& connection) {
+void MySqlConnectionDispatcher::dispatch(SqLiteDBConnection2 &connection) {
     m_mysql_connection = nullptr;
 }
 
-void SqLiteConnectionDispatcher::connect(MySqlDBConnection2& connection) {
+void SqLiteConnectionDispatcher::dispatch(MySqlDBConnection2 &connection) {
     m_sqlite_connection = nullptr;
 }
 
-void SqLiteConnectionDispatcher::connect(SqLiteDBConnection2& connection) {
+void SqLiteConnectionDispatcher::dispatch(SqLiteDBConnection2 &connection) {
     m_sqlite_connection = &connection;
 }
 

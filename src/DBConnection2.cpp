@@ -2,7 +2,7 @@
 #include "ConnectionDispatcher.hpp"
 
 void MySqlDBConnection2::dispatch(IConnectionDispatcher& connectionDispatcher) {
-    connectionDispatcher.connect(*this);
+    connectionDispatcher.dispatch(*this);
 }
 
 int MySqlDBConnection2::query() const {
@@ -14,7 +14,7 @@ Info MySqlDBConnection2::advancedQuery() const {
 }
 
 void SqLiteDBConnection2::dispatch(IConnectionDispatcher& connectionDispatcher) {
-    connectionDispatcher.connect(*this);
+    connectionDispatcher.dispatch(*this);
 }
 
 int SqLiteDBConnection2::query() const {
