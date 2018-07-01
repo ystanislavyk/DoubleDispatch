@@ -30,12 +30,11 @@ private:
 class SqLiteDBConnection2 : public IDBConnection2 {
 public:
     SqLiteDBConnection2() = default;
-    explicit SqLiteDBConnection2(std::string serverVersion, int protocolVersion) :
-            m_info{std::move(serverVersion), protocolVersion} {};
+    explicit SqLiteDBConnection2(int protocolVersion) : m_protocol_version(protocolVersion) {};
 
     void dispatch(IConnectionDispatcher& connectionDispatcher) override;
     int query() const override;
 
 private:
-    Info m_info;
+    int m_protocol_version;
 };

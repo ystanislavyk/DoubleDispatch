@@ -18,5 +18,5 @@ void SqLiteDBConnection2::dispatch(IConnectionDispatcher& connectionDispatcher) 
 }
 
 int SqLiteDBConnection2::query() const {
-    return m_info.protocol_version;
+    return m_protocol_version;
 }

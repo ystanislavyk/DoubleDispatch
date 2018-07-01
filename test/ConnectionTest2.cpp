@@ -40,7 +40,7 @@ namespace {
 
     TEST(MySqlDBConnection2Test, GetInfoTest) {
         MySqlDBConnection2 mysql_connection("4.2.2 MySQL Server", 10);
-        SqLiteDBConnection2 sqlite_connection("SQLite server", 2);
+        SqLiteDBConnection2 sqlite_connection(2);
 
         ASSERT_EQ(10, getMySqlConnection2Info(mysql_connection));
         ASSERT_EQ(0, getMySqlConnection2Info(sqlite_connection));
@@ -48,18 +48,18 @@ namespace {
 
     TEST(MySqlDBConnection2Test, GetAdvancedInfo) {
         MySqlDBConnection2 mysql_connection("4.2.2 MySQL Server", 10);
-        SqLiteDBConnection2 sqlite_connection("SQLite server", 2);
+        SqLiteDBConnection2 sqlite_connection(2);
 
         ASSERT_EQ("4.2.2 MySQL Server", getMySqlConnection2AdvancedInfo(mysql_connection));
         ASSERT_EQ("", getMySqlConnection2AdvancedInfo(sqlite_connection));
     }
 
-    TEST(SqLiteDBConnection2Test, GetInfoTest) {
-        SqLiteDBConnection2 sqlite_connection("Some SQLite server", 7);
+    TEST(PassWrongChildrensTest, SqLiteAndMySql) {
+        SqLiteDBConnection2 sqlite_connection(7);
         MySqlDBConnection2 mysql_connection("Some SQL server", 8);
 
-        ASSERT_EQ(7, getSqLiteConnection2Info(sqlite_connection));
         ASSERT_EQ(0, getSqLiteConnection2Info(mysql_connection));
+        ASSERT_EQ(0, getMySqlConnection2Info(sqlite_connection));
     }
 
 }
