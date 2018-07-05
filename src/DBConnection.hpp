@@ -4,12 +4,12 @@
 #include <utility>
 
 struct Info {
-    Info() = default;
+    Info() : server_version{""}, protocol_version(0) {};
     explicit Info(std::string serverVersion, int protocolVersion) :
             server_version(std::move(serverVersion)), protocol_version(protocolVersion) {};
 
-    std::string server_version{""};
-    int protocol_version{0};
+    std::string server_version;
+    int protocol_version;
 };
 
 class IDBConnection {
