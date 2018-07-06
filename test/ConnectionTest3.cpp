@@ -32,12 +32,12 @@ namespace {
 
     TEST(SqLiteConnection3InfoTest, GetInfoStaticCast) {
         SqLiteDBConnection3 sqlite_connection(3);
-        ASSERT_EQ(3, getMySqlConnection3Info(sqlite_connection));
+        ASSERT_THROW(getMySqlConnection3Info(sqlite_connection), std::bad_cast);
     }
 
     TEST(SqLiteConnection3InfoTest, GetAdvancedInfoStaticCast) {
         SqLiteDBConnection3 sqlite_connection(3);
-        ASSERT_ANY_THROW(getMySqlConnection3AdvancedInfo(sqlite_connection));
+        ASSERT_THROW(getMySqlConnection3AdvancedInfo(sqlite_connection), std::bad_cast);
     }
 
     TEST(SqLiteConnection3InfoTest, GetInfoDynamicCast) {
