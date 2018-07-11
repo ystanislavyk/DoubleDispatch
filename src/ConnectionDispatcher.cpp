@@ -1,3 +1,5 @@
+/* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
+
 #include "ConnectionDispatcher.hpp"
 
 void MySqlConnectionDispatcher::dispatch(MySqlDBConnection2 &connection) {

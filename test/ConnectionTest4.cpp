@@ -1,3 +1,5 @@
+/* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
+
 #include <gtest/gtest.h>
 
 #include "DBConnection4.hpp"

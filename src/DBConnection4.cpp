@@ -1,3 +1,5 @@
+/* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
+
 #include "DBConnection4.hpp"
 
 ConnectionType MySqlDBConnection4::connectionType() const {

@@ -1,3 +1,5 @@
+/* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
+
 #include "DBConnection3.hpp"
 
 int MySqlDBConnection3::query() const {
