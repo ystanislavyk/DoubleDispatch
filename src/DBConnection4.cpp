@@ -2,22 +2,22 @@
 
 #include "DBConnection4.hpp"
 
-ConnectionType MySqlDBConnection4::connectionType() const {
+ConnectionType MySqlDBConnection4::GetConnectionType() const {
     return ConnectionType::MYSQL;
 }
 
-int MySqlDBConnection4::query() const {
+int MySqlDBConnection4::Query() const {
     return m_info.protocol_version;
 }
 
-Info MySqlDBConnection4::advancedQuery() const {
+Info MySqlDBConnection4::AdvancedQuery() const {
     return m_info;
 }
 
-int SqLiteDBConnection4::query() const {
+int SqLiteDBConnection4::Query() const {
     return m_protocol_version;
 }
 
-ConnectionType SqLiteDBConnection4::connectionType() const {
+ConnectionType SqLiteDBConnection4::GetConnectionType() const {
     return ConnectionType::SQLITE;
 }

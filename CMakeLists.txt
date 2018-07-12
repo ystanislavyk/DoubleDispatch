@@ -12,9 +12,25 @@ find_package(Threads REQUIRED)
 
 include(CTest)
 
-set(SRC_LIST "src/DBConnection.cpp" "src/DBConnection.hpp" src/DBConnection2.cpp src/DBConnection2.hpp src/ConnectionDispatcher.cpp src/ConnectionDispatcher.hpp src/DBConnection3.cpp src/DBConnection3.hpp src/DBConnection3Caster.hpp src/DBConnection4.cpp src/DBConnection4.hpp)
+set(SRC_LIST
+    "src/DBConnection.hpp"
+    "src/DBConnection.cpp"
+    "src/DBConnection2.hpp"
+    "src/DBConnection2.cpp"
+    "src/ConnectionDispatcher.hpp"
+    "src/ConnectionDispatcher.cpp"
+    "src/DBConnection3.hpp"
+    "src/DBConnection3.cpp"
+    "src/DBConnection3Caster.hpp"
+    "src/DBConnection4.hpp"
+    "src/DBConnection4.cpp")
 
-add_executable(testrunner "${SRC_LIST}" test/ConnectionTest.cpp test/ConnectionTest2.cpp test/ConnectionTest3.cpp test/ConnectionTest4.cpp)
+add_executable(testrunner
+    "${SRC_LIST}"
+    "test/ConnectionTest.cpp"
+    "test/ConnectionTest2.cpp"
+    "test/ConnectionTest3.cpp"
+    "test/ConnectionTest4.cpp")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

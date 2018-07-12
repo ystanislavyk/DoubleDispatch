@@ -2,10 +2,10 @@
 
 #include "DBConnection.hpp"
 
-int MySqlDBConnection::query() const {
+int MySqlDBConnection::Query() const {
 	return m_info.protocol_version;
 }
 
-Info MySqlDBConnection::advancedQuery() const {
+Info MySqlDBConnection::AdvancedQuery() const {
 	return m_info;
 }

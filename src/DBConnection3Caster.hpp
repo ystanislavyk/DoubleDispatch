@@ -11,11 +11,11 @@ enum class CastType {
 
 template <typename To, typename From>
 struct DBConnection3Caster {
-    static To& cast(From& object) {
+    static To& Cast(From& object) {
         return dynamic_cast<To&>(object);
     }
 
-    static CastType castType() {
+    static CastType GetCastType() {
         return CastType::DYNAMIC_CAST;
     }
 };
@@ -23,11 +23,11 @@ struct DBConnection3Caster {
 template <>
 class DBConnection3Caster<MySqlDBConnection3, IDBConnection3> {
 public:
-    static MySqlDBConnection3& cast(IDBConnection3& object) {
+    static MySqlDBConnection3& Cast(IDBConnection3& object) {
         return static_cast<MySqlDBConnection3&>(object);
     }
 
-    static CastType castType() {
+    static CastType GetCastType() {
         return CastType::STATIC_CAST;
     }
 };
