@@ -1,0 +1,14 @@
+FROM ubuntu:18.04
+
+WORKDIR root/project
+
+ADD . $PROJECT_ROOT
+
+RUN apt update
+RUN apt install -y g++
+RUN apt install -y cmake
+RUN apt install -y git
+RUN apt install -y clang-format-6.0
+
+RUN apt install -y libgtest-dev
+RUN cd /usr/src/gtest && cmake CMakeLists.txt && make && cp *.a /usr/lib

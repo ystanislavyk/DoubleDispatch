@@ -1,7 +1,11 @@
+<<<<<<< HEAD
+=======
 /* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
 
 #include <cassert>
+>>>>>>> remotes/upstream/master
 #include <gtest/gtest.h>
+#include <cassert>
 
 #include "DBConnection.hpp"
 
@@ -27,4 +31,9 @@ namespace {
         ASSERT_EQ("5.5.8 MySQL Community Server (GPL)", GetConnectionAdvancedInfo(mysql_connection));
     }
 
+TEST(ConnectionInfoTest, GetAdvancedInfo) {
+  MySqlDBConnection connection("5.5.8 MySQL Community Server (GPL)", 10);
+  ASSERT_EQ("5.5.8 MySQL Community Server (GPL)",
+            getConnectionAdvancedInfo(connection));
 }
+}  // namespace
