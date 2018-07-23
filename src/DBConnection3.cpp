@@ -2,14 +2,8 @@
 
 #include "DBConnection3.hpp"
 
-int MySqlDBConnection3::Query() const {
-    return m_info.protocol_version;
-}
+int MySqlDBConnection3::Query() const { return m_info.protocol_version; }
 
-Info MySqlDBConnection3::AdvancedQuery() const {
-    return m_info;
-}
+Info MySqlDBConnection3::AdvancedQuery() const { return m_info; }
 
-int SqLiteDBConnection3::Query() const {
-    return m_protocol_version;
-}
+int SqLiteDBConnection3::Query() const { return m_protocol_version; }
