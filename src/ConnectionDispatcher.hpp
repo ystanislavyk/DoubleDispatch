@@ -6,7 +6,7 @@
 
 class IConnectionDispatcher {
  public:
-  virtual void Dispatch(MySqlDBConnection2& connection) = 0;
+   virtual void Dispatch(MySqlDBConnection2& connection) = 0;
   virtual void Dispatch(SqLiteDBConnection2& connection) = 0;
 };
 
