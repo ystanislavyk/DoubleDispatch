@@ -1,0 +1,16 @@
+FROM ubuntu:18.04
+
+WORKDIR root/project
+ARG TEMP_DIR=/root/temp
+
+ADD . $PROJECT_ROOT
+
+RUN apt update
+RUN apt install -y g++
+RUN apt install -y cmake
+RUN apt install -y clang-format-6.0
+
+RUN apt install -y git
+
+RUN mkdir -p ${TEMP_DIR} && cd ${TEMP_DIR} && pwd && git clone git://github.com/google/googletest && \
+  mkdir googletest/build && cd googletest/build && cmake .. && make && make install

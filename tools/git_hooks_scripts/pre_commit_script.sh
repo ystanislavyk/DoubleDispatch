@@ -12,5 +12,3 @@ if [ $? -ne 1 ]; then
 else
 	echo "Clang-format check passed"
 fi
-
-exit
