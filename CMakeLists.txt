@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(DoubleDispatch VERSION 1.0 LANGUAGES CXX)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
 # Manage dependencies
 
@@ -41,14 +41,18 @@ set(SRC_LIST
     "src/DBConnection3.cpp"
     "src/DBConnection3Caster.hpp"
     "src/DBConnection4.hpp"
-    "src/DBConnection4.cpp")
+    "src/DBConnection4.cpp"
+    "src/DBConnection5.hpp"
+    "src/DBConnection5.cpp"
+    "src/DBConnectionChecker.hpp")
 
 add_executable(testrunner
     "${SRC_LIST}"
     "test/ConnectionTest.cpp"
     "test/ConnectionTest2.cpp"
     "test/ConnectionTest3.cpp"
-    "test/ConnectionTest4.cpp")
+    "test/ConnectionTest4.cpp"
+    "test/ConnectionTest5.cpp")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
