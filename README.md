@@ -13,7 +13,7 @@ Example of use "Double Dispatch" pattern to avoid `static_cast` restrictions
 
 * GNU-compatible Make
 * POSIX-standard shell
-* A C++11-standard-compliant compiler
+* A C++14-standard-compliant compiler
 
 ## Build ##
 
@@ -37,4 +37,4 @@ Run from build directory
 
 or
 
-`ctest TypeConversionTest`
+`ctest AllTests`
