@@ -37,4 +37,4 @@ Run from build directory
 
 or
 
-`ctest TypeConversionTest`
+`ctest AllTests`
