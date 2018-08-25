@@ -6,13 +6,14 @@
 
 class IConnectionDispatcher {
  public:
+  virtual ~IConnectionDispatcher();
   virtual void Dispatch(MySqlDBConnection2& connection) = 0;
   virtual void Dispatch(SqLiteDBConnection2& connection) = 0;
 };
 
 class MySqlConnectionDispatcher : public IConnectionDispatcher {
  public:
-  MySqlConnectionDispatcher() : m_mysql_connection(nullptr){};
+  MySqlConnectionDispatcher() : m_mysql_connection(nullptr) {}
 
   void Dispatch(MySqlDBConnection2& connection) override;
   void Dispatch(SqLiteDBConnection2& connection) override;
@@ -25,7 +26,7 @@ class MySqlConnectionDispatcher : public IConnectionDispatcher {
 
 class SqLiteConnectionDispatcher : public IConnectionDispatcher {
  public:
-  SqLiteConnectionDispatcher() : m_sqlite_connection(nullptr){};
+  SqLiteConnectionDispatcher() : m_sqlite_connection(nullptr) {}
 
   void Dispatch(MySqlDBConnection2& connection) override;
   void Dispatch(SqLiteDBConnection2& connection) override;

@@ -3,6 +3,8 @@
 #include "DBConnection2.hpp"
 #include "ConnectionDispatcher.hpp"
 
+IDBConnection2::~IDBConnection2() = default;
+
 void MySqlDBConnection2::Dispatch(
     IConnectionDispatcher& connection_dispatcher) {
   connection_dispatcher.Dispatch(*this);

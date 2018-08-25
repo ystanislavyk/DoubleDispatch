@@ -38,23 +38,19 @@ set(SRC_LIST
     "src/ConnectionDispatcher.hpp"
     "src/ConnectionDispatcher.cpp"
     "src/DBConnection3.hpp"
-    "src/DBConnection3.cpp"
-    "src/DBConnection3Caster.hpp"
-    "src/DBConnection4.hpp"
-    "src/DBConnection4.cpp")
+    "src/DBConnection3.cpp")
 
 add_executable(testrunner
     "${SRC_LIST}"
     "test/ConnectionTest.cpp"
     "test/ConnectionTest2.cpp"
-    "test/ConnectionTest3.cpp"
-    "test/ConnectionTest4.cpp")
+    "test/ConnectionTest3.cpp")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 target_include_directories(testrunner PRIVATE src test)
 
-target_compile_options(testrunner PRIVATE -Wextra -pedantic)
+target_compile_options(testrunner PRIVATE -Wextra -pedantic -Werror)
 
 target_link_libraries(testrunner PRIVATE ${CONAN_LIBS})
 
