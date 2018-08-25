@@ -6,7 +6,7 @@
 
 class IDBConnection3 {
  public:
-  virtual ~IDBConnection3() = default;
+  virtual ~IDBConnection3();
 
   virtual int Query() const = 0;
 };
@@ -14,7 +14,7 @@ class IDBConnection3 {
 class MySqlDBConnection3 : public IDBConnection3 {
  public:
   explicit MySqlDBConnection3(std::string server_version, int protocol_version)
-      : m_info{std::move(server_version), protocol_version} {};
+      : m_info{std::move(server_version), protocol_version} {}
 
   int Query() const override;
   Info AdvancedQuery() const;
@@ -25,9 +25,9 @@ class MySqlDBConnection3 : public IDBConnection3 {
 
 class SqLiteDBConnection3 : public IDBConnection3 {
  public:
-  SqLiteDBConnection3() : m_protocol_version(0){};
+  SqLiteDBConnection3() : m_protocol_version(0) {}
   explicit SqLiteDBConnection3(int protocol_version)
-      : m_protocol_version(protocol_version){};
+      : m_protocol_version(protocol_version) {}
 
   int Query() const override;
 

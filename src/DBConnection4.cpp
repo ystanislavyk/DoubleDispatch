@@ -2,6 +2,8 @@
 
 #include "DBConnection4.hpp"
 
+IDBConnection4::~IDBConnection4() = default;
+
 ConnectionType MySqlDBConnection4::GetConnectionType() const {
   return ConnectionType::MYSQL;
 }

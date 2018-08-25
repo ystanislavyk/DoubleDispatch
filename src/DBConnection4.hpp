@@ -8,7 +8,7 @@ enum class ConnectionType { MYSQL, SQLITE };
 
 class IDBConnection4 {
  public:
-  virtual ~IDBConnection4() = default;
+  virtual ~IDBConnection4();
 
   virtual ConnectionType GetConnectionType() const = 0;
 
@@ -18,7 +18,7 @@ class IDBConnection4 {
 class MySqlDBConnection4 : public IDBConnection4 {
  public:
   explicit MySqlDBConnection4(std::string server_version, int protocol_version)
-      : m_info{std::move(server_version), protocol_version} {};
+      : m_info{std::move(server_version), protocol_version} {}
 
   ConnectionType GetConnectionType() const override;
 
@@ -31,9 +31,9 @@ class MySqlDBConnection4 : public IDBConnection4 {
 
 class SqLiteDBConnection4 : public IDBConnection4 {
  public:
-  SqLiteDBConnection4() : m_protocol_version(0){};
+  SqLiteDBConnection4() : m_protocol_version(0) {}
   explicit SqLiteDBConnection4(int protocol_version)
-      : m_protocol_version(protocol_version){};
+      : m_protocol_version(protocol_version) {}
 
   ConnectionType GetConnectionType() const override;
 

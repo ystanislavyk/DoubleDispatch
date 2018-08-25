@@ -2,6 +2,8 @@
 
 #include "DBConnection3.hpp"
 
+IDBConnection3::~IDBConnection3() = default;
+
 int MySqlDBConnection3::Query() const { return m_info.protocol_version; }
 
 Info MySqlDBConnection3::AdvancedQuery() const { return m_info; }

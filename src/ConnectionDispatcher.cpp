@@ -2,6 +2,8 @@
 
 #include "ConnectionDispatcher.hpp"
 
+IConnectionDispatcher::~IConnectionDispatcher() = default;
+
 void MySqlConnectionDispatcher::Dispatch(MySqlDBConnection2& connection) {
   m_mysql_connection = &connection;
 }

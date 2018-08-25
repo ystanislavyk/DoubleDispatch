@@ -54,7 +54,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 target_include_directories(testrunner PRIVATE src test)
 
-target_compile_options(testrunner PRIVATE -Wextra -pedantic)
+target_compile_options(testrunner PRIVATE -Wextra -pedantic -Werror)
 
 target_link_libraries(testrunner PRIVATE ${CONAN_LIBS})
 
