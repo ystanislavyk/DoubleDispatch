@@ -1,11 +1,13 @@
 #!/bin/bash
 
+ARGUMENTS="-name "*.h" -o -name "*.hpp" -o -name "*.c" -o -name "*.cpp""
+
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
-    find -name "*.h" -o -name "*.hpp" -o -name "*.c" -o -name "*.cpp" |
+    find ${ARGUMENTS} |
     xargs clang-format-6.0 -i
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-    find . -name "*.h" -o -name "*.hpp" -o -name "*.c" -o -name "*.cpp" |
+    find . ${ARGUMENTS} |
     xargs clang-format -i
 fi
 
-echo "Done"
+echo "Clang format has been applied"

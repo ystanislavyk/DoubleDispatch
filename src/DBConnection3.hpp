@@ -19,8 +19,7 @@ class IDBConnection {
 
 class MySqlDBConnection : public IDBConnection {
  public:
-  explicit MySqlDBConnection(std::string server_version, int protocol_version)
-      : m_info{std::move(server_version), protocol_version} {}
+  explicit MySqlDBConnection(std::string server_version, int protocol_version);
 
   ConnectionType GetConnectionType() const override;
 
@@ -33,9 +32,8 @@ class MySqlDBConnection : public IDBConnection {
 
 class SqLiteDBConnection : public IDBConnection {
  public:
-  SqLiteDBConnection() : m_protocol_version(0) {}
-  explicit SqLiteDBConnection(int protocol_version)
-      : m_protocol_version(protocol_version) {}
+  SqLiteDBConnection();
+  explicit SqLiteDBConnection(int protocol_version);
 
   ConnectionType GetConnectionType() const override;
 

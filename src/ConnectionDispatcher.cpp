@@ -6,27 +6,33 @@ namespace DoubleDispatch {
 
 IConnectionDispatcher::~IConnectionDispatcher() = default;
 
-void MySqlConnectionDispatcher::Dispatch(DoubleDispatch::MySqlDBConnection& connection) {
+MySqlConnectionDispatcher::MySqlConnectionDispatcher()
+    : m_mysql_connection(nullptr) {}
+
+void MySqlConnectionDispatcher::Dispatch(MySqlDBConnection& connection) {
   m_mysql_connection = &connection;
 }
 
-void MySqlConnectionDispatcher::Dispatch(DoubleDispatch::SqLiteDBConnection&) {
+void MySqlConnectionDispatcher::Dispatch(SqLiteDBConnection&) {
   m_mysql_connection = nullptr;
 }
 
-void SqLiteConnectionDispatcher::Dispatch(DoubleDispatch::MySqlDBConnection&) {
-  m_sqlite_connection = nullptr;
-}
-
-void SqLiteConnectionDispatcher::Dispatch(DoubleDispatch::SqLiteDBConnection& connection) {
-  m_sqlite_connection = &connection;
-}
-
-DoubleDispatch::MySqlDBConnection* MySqlConnectionDispatcher::connection() const {
+MySqlDBConnection* MySqlConnectionDispatcher::connection() const {
   return m_mysql_connection;
 }
 
-DoubleDispatch::SqLiteDBConnection* SqLiteConnectionDispatcher::connection() const {
+SqLiteConnectionDispatcher::SqLiteConnectionDispatcher()
+    : m_sqlite_connection(nullptr) {}
+
+void SqLiteConnectionDispatcher::Dispatch(MySqlDBConnection&) {
+  m_sqlite_connection = nullptr;
+}
+
+void SqLiteConnectionDispatcher::Dispatch(SqLiteDBConnection& connection) {
+  m_sqlite_connection = &connection;
+}
+
+SqLiteDBConnection* SqLiteConnectionDispatcher::connection() const {
   return m_sqlite_connection;
 }
 

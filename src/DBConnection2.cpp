@@ -7,14 +7,24 @@ namespace DoubleDispatch {
 
 IDBConnection::~IDBConnection() = default;
 
-void MySqlDBConnection::Dispatch(
-    IConnectionDispatcher& connection_dispatcher) {
+MySqlDBConnection::MySqlDBConnection() = default;
+
+MySqlDBConnection::MySqlDBConnection(std::string server_version,
+                                     int protocol_version)
+    : m_info{std::move(server_version), protocol_version} {}
+
+void MySqlDBConnection::Dispatch(IConnectionDispatcher& connection_dispatcher) {
   connection_dispatcher.Dispatch(*this);
 }
 
 int MySqlDBConnection::Query() const { return m_info.protocol_version; }
 
 Origin::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
+
+SqLiteDBConnection::SqLiteDBConnection() : m_protocol_version(0) {}
+
+SqLiteDBConnection::SqLiteDBConnection(int protocol_version)
+    : m_protocol_version(protocol_version) {}
 
 void SqLiteDBConnection::Dispatch(
     IConnectionDispatcher& connection_dispatcher) {

@@ -15,7 +15,7 @@ class IConnectionDispatcher {
 
 class MySqlConnectionDispatcher : public IConnectionDispatcher {
  public:
-  MySqlConnectionDispatcher() : m_mysql_connection(nullptr) {}
+  MySqlConnectionDispatcher();
 
   void Dispatch(MySqlDBConnection& connection) override;
   void Dispatch(SqLiteDBConnection& connection) override;
@@ -28,7 +28,7 @@ class MySqlConnectionDispatcher : public IConnectionDispatcher {
 
 class SqLiteConnectionDispatcher : public IConnectionDispatcher {
  public:
-  SqLiteConnectionDispatcher() : m_sqlite_connection(nullptr) {}
+  SqLiteConnectionDispatcher();
 
   void Dispatch(MySqlDBConnection& connection) override;
   void Dispatch(SqLiteDBConnection& connection) override;

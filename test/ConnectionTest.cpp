@@ -7,25 +7,27 @@
 
 namespace {
 
-using namespace Origin;
-
-int GetConnectionInfo(const IDBConnection& db_connection) {
+int GetConnectionInfo(const Origin::IDBConnection& db_connection) {
   return db_connection.Query();
 }
 
-std::string GetConnectionAdvancedInfo(const IDBConnection& db_connection) {
-  assert(dynamic_cast<const MySqlDBConnection*>(&db_connection));
-  auto& mysql_connection = static_cast<const MySqlDBConnection&>(db_connection);
+std::string GetConnectionAdvancedInfo(
+    const Origin::IDBConnection& db_connection) {
+  assert(dynamic_cast<const Origin::MySqlDBConnection*>(&db_connection));
+  auto& mysql_connection =
+      static_cast<const Origin::MySqlDBConnection&>(db_connection);
   return mysql_connection.AdvancedQuery().server_version;
 }
 
 TEST(ConnectionInfoTest, GetInfo) {
-  MySqlDBConnection mysql_connection("5.5.8 MySQL Community Server (GPL)", 10);
+  Origin::MySqlDBConnection mysql_connection(
+      "5.5.8 MySQL Community Server (GPL)", 10);
   ASSERT_EQ(10, GetConnectionInfo(mysql_connection));
 }
 
 TEST(ConnectionInfoTest, GetAdvancedInfo) {
-  MySqlDBConnection mysql_connection("5.5.8 MySQL Community Server (GPL)", 10);
+  Origin::MySqlDBConnection mysql_connection(
+      "5.5.8 MySQL Community Server (GPL)", 10);
   ASSERT_EQ("5.5.8 MySQL Community Server (GPL)",
             GetConnectionAdvancedInfo(mysql_connection));
 }
