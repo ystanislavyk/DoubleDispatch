@@ -2,18 +2,22 @@
 
 #include "DBConnection3.hpp"
 
-IDBConnection3::~IDBConnection3() = default;
+namespace TypeStoring {
 
-ConnectionType MySqlDBConnection3::GetConnectionType() const {
+IDBConnection::~IDBConnection() = default;
+
+ConnectionType MySqlDBConnection::GetConnectionType() const {
   return ConnectionType::MYSQL;
 }
 
-int MySqlDBConnection3::Query() const { return m_info.protocol_version; }
+int MySqlDBConnection::Query() const { return m_info.protocol_version; }
 
-Info MySqlDBConnection3::AdvancedQuery() const { return m_info; }
+Origin::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
 
-int SqLiteDBConnection3::Query() const { return m_protocol_version; }
+int SqLiteDBConnection::Query() const { return m_protocol_version; }
 
-ConnectionType SqLiteDBConnection3::GetConnectionType() const {
+ConnectionType SqLiteDBConnection::GetConnectionType() const {
   return ConnectionType::SQLITE;
 }
+
+}  // namespace TypeStoring

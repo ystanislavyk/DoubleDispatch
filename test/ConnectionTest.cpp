@@ -7,6 +7,8 @@
 
 namespace {
 
+using namespace Origin;
+
 int GetConnectionInfo(const IDBConnection& db_connection) {
   return db_connection.Query();
 }

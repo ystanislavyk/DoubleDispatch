@@ -3,20 +3,24 @@
 #include "DBConnection2.hpp"
 #include "ConnectionDispatcher.hpp"
 
-IDBConnection2::~IDBConnection2() = default;
+namespace DoubleDispatch {
 
-void MySqlDBConnection2::Dispatch(
+IDBConnection::~IDBConnection() = default;
+
+void MySqlDBConnection::Dispatch(
     IConnectionDispatcher& connection_dispatcher) {
   connection_dispatcher.Dispatch(*this);
 }
 
-int MySqlDBConnection2::Query() const { return m_info.protocol_version; }
+int MySqlDBConnection::Query() const { return m_info.protocol_version; }
 
-Info MySqlDBConnection2::AdvancedQuery() const { return m_info; }
+Origin::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
 
-void SqLiteDBConnection2::Dispatch(
+void SqLiteDBConnection::Dispatch(
     IConnectionDispatcher& connection_dispatcher) {
   connection_dispatcher.Dispatch(*this);
 }
 
-int SqLiteDBConnection2::Query() const { return m_protocol_version; }
+int SqLiteDBConnection::Query() const { return m_protocol_version; }
+
+}  // namespace DoubleDispatch

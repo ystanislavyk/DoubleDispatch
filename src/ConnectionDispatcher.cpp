@@ -2,28 +2,32 @@
 
 #include "ConnectionDispatcher.hpp"
 
+namespace DoubleDispatch {
+
 IConnectionDispatcher::~IConnectionDispatcher() = default;
 
-void MySqlConnectionDispatcher::Dispatch(MySqlDBConnection2& connection) {
+void MySqlConnectionDispatcher::Dispatch(DoubleDispatch::MySqlDBConnection& connection) {
   m_mysql_connection = &connection;
 }
 
-void MySqlConnectionDispatcher::Dispatch(SqLiteDBConnection2&) {
+void MySqlConnectionDispatcher::Dispatch(DoubleDispatch::SqLiteDBConnection&) {
   m_mysql_connection = nullptr;
 }
 
-void SqLiteConnectionDispatcher::Dispatch(MySqlDBConnection2&) {
+void SqLiteConnectionDispatcher::Dispatch(DoubleDispatch::MySqlDBConnection&) {
   m_sqlite_connection = nullptr;
 }
 
-void SqLiteConnectionDispatcher::Dispatch(SqLiteDBConnection2& connection) {
+void SqLiteConnectionDispatcher::Dispatch(DoubleDispatch::SqLiteDBConnection& connection) {
   m_sqlite_connection = &connection;
 }
 
-MySqlDBConnection2* MySqlConnectionDispatcher::connection() const {
+DoubleDispatch::MySqlDBConnection* MySqlConnectionDispatcher::connection() const {
   return m_mysql_connection;
 }
 
-SqLiteDBConnection2* SqLiteConnectionDispatcher::connection() const {
+DoubleDispatch::SqLiteDBConnection* SqLiteConnectionDispatcher::connection() const {
   return m_sqlite_connection;
 }
+
+}  // namespace DoubleDispatch

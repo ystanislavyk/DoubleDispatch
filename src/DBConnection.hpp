@@ -5,6 +5,8 @@
 #include <string>
 #include <utility>
 
+namespace Origin {
+
 struct Info {
   Info() : server_version{""}, protocol_version(0) {}
   explicit Info(std::string server_ver, int protocol_ver)
@@ -32,3 +34,5 @@ class MySqlDBConnection : public IDBConnection {
  private:
   Info m_info;
 };
+
+}  // namespace Origin
