@@ -4,35 +4,39 @@
 
 #include "DBConnection2.hpp"
 
+namespace DoubleDispatch {
+
 class IConnectionDispatcher {
  public:
   virtual ~IConnectionDispatcher();
-  virtual void Dispatch(MySqlDBConnection2& connection) = 0;
-  virtual void Dispatch(SqLiteDBConnection2& connection) = 0;
+  virtual void Dispatch(MySqlDBConnection& connection) = 0;
+  virtual void Dispatch(SqLiteDBConnection& connection) = 0;
 };
 
 class MySqlConnectionDispatcher : public IConnectionDispatcher {
  public:
-  MySqlConnectionDispatcher() : m_mysql_connection(nullptr) {}
+  MySqlConnectionDispatcher();
 
-  void Dispatch(MySqlDBConnection2& connection) override;
-  void Dispatch(SqLiteDBConnection2& connection) override;
+  void Dispatch(MySqlDBConnection& connection) override;
+  void Dispatch(SqLiteDBConnection& connection) override;
 
-  MySqlDBConnection2* connection() const;
+  MySqlDBConnection* connection() const;
 
  private:
-  MySqlDBConnection2* m_mysql_connection;
+  MySqlDBConnection* m_mysql_connection;
 };
 
 class SqLiteConnectionDispatcher : public IConnectionDispatcher {
  public:
-  SqLiteConnectionDispatcher() : m_sqlite_connection(nullptr) {}
+  SqLiteConnectionDispatcher();
 
-  void Dispatch(MySqlDBConnection2& connection) override;
-  void Dispatch(SqLiteDBConnection2& connection) override;
+  void Dispatch(MySqlDBConnection& connection) override;
+  void Dispatch(SqLiteDBConnection& connection) override;
 
-  SqLiteDBConnection2* connection() const;
+  SqLiteDBConnection* connection() const;
 
  private:
-  SqLiteDBConnection2* m_sqlite_connection;
+  SqLiteDBConnection* m_sqlite_connection;
 };
+
+}  // namespace DoubleDispatch

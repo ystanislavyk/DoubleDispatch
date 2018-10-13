@@ -5,10 +5,11 @@
 #include <string>
 #include <utility>
 
+namespace Origin {
+
 struct Info {
-  Info() : server_version{""}, protocol_version(0) {}
-  explicit Info(std::string server_ver, int protocol_ver)
-      : server_version(std::move(server_ver)), protocol_version(protocol_ver) {}
+  Info();
+  explicit Info(std::string server_ver, int protocol_ver);
 
   std::string server_version;
   int protocol_version;
@@ -23,8 +24,7 @@ class IDBConnection {
 
 class MySqlDBConnection : public IDBConnection {
  public:
-  explicit MySqlDBConnection(std::string server_version, int protocol_version)
-      : m_info{std::move(server_version), protocol_version} {}
+  explicit MySqlDBConnection(std::string server_version, int protocol_version);
 
   int Query() const override;
   Info AdvancedQuery() const;
@@ -32,3 +32,5 @@ class MySqlDBConnection : public IDBConnection {
  private:
   Info m_info;
 };
+
+}  // namespace Origin

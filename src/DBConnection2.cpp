@@ -3,20 +3,34 @@
 #include "DBConnection2.hpp"
 #include "ConnectionDispatcher.hpp"
 
-IDBConnection2::~IDBConnection2() = default;
+namespace DoubleDispatch {
 
-void MySqlDBConnection2::Dispatch(
+IDBConnection::~IDBConnection() = default;
+
+MySqlDBConnection::MySqlDBConnection() = default;
+
+MySqlDBConnection::MySqlDBConnection(std::string server_version,
+                                     int protocol_version)
+    : m_info{std::move(server_version), protocol_version} {}
+
+void MySqlDBConnection::Dispatch(IConnectionDispatcher& connection_dispatcher) {
+  connection_dispatcher.Dispatch(*this);
+}
+
+int MySqlDBConnection::Query() const { return m_info.protocol_version; }
+
+Origin::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
+
+SqLiteDBConnection::SqLiteDBConnection() : m_protocol_version(0) {}
+
+SqLiteDBConnection::SqLiteDBConnection(int protocol_version)
+    : m_protocol_version(protocol_version) {}
+
+void SqLiteDBConnection::Dispatch(
     IConnectionDispatcher& connection_dispatcher) {
   connection_dispatcher.Dispatch(*this);
 }
 
-int MySqlDBConnection2::Query() const { return m_info.protocol_version; }
+int SqLiteDBConnection::Query() const { return m_protocol_version; }
 
-Info MySqlDBConnection2::AdvancedQuery() const { return m_info; }
-
-void SqLiteDBConnection2::Dispatch(
-    IConnectionDispatcher& connection_dispatcher) {
-  connection_dispatcher.Dispatch(*this);
-}
-
-int SqLiteDBConnection2::Query() const { return m_protocol_version; }
+}  // namespace DoubleDispatch
