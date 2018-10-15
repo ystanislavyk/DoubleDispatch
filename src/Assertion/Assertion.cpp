@@ -1,10 +1,10 @@
 /* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
 
-#include "DBConnection.hpp"
+#include "Assertion.hpp"
 
-namespace Origin {
+namespace Assertion {
 
-Info::Info() : server_version{""}, protocol_version(0) {}
+Info::Info() : server_version(), protocol_version(0) {}
 
 Info::Info(std::string server_ver, int protocol_ver)
     : server_version(std::move(server_ver)), protocol_version(protocol_ver) {}
@@ -19,4 +19,4 @@ int MySqlDBConnection::Query() const { return m_info.protocol_version; }
 
 Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
 
-}  // namespace Origin
+}  // namespace Assertion

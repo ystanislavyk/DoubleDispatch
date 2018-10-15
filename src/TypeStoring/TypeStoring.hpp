@@ -2,32 +2,32 @@
 
 #pragma once
 
-#include "DBConnection.hpp"
+#include "Assertion/Assertion.hpp"
 
-namespace DoubleDispatch {
+namespace TypeStoring {
 
-class IConnectionDispatcher;
+enum class ConnectionType { MYSQL, SQLITE };
 
 class IDBConnection {
  public:
   virtual ~IDBConnection();
 
-  virtual void Dispatch(IConnectionDispatcher& connection_dispatcher) = 0;
+  virtual ConnectionType GetConnectionType() const = 0;
+
   virtual int Query() const = 0;
 };
 
 class MySqlDBConnection : public IDBConnection {
  public:
-  MySqlDBConnection();
   explicit MySqlDBConnection(std::string server_version, int protocol_version);
 
-  void Dispatch(IConnectionDispatcher& connection_dispatcher) override;
-  int Query() const override;
+  ConnectionType GetConnectionType() const override;
 
-  Origin::Info AdvancedQuery() const;
+  int Query() const override;
+  Assertion::Info AdvancedQuery() const;
 
  private:
-  Origin::Info m_info;
+  Assertion::Info m_info;
 };
 
 class SqLiteDBConnection : public IDBConnection {
@@ -35,11 +35,12 @@ class SqLiteDBConnection : public IDBConnection {
   SqLiteDBConnection();
   explicit SqLiteDBConnection(int protocol_version);
 
-  void Dispatch(IConnectionDispatcher& connection_dispatcher) override;
+  ConnectionType GetConnectionType() const override;
+
   int Query() const override;
 
  private:
   int m_protocol_version;
 };
 
-}  // namespace DoubleDispatch
+}  // namespace TypeStoring

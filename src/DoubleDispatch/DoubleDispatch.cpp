@@ -1,6 +1,6 @@
 /* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
 
-#include "DBConnection2.hpp"
+#include "DoubleDispatch.hpp"
 #include "ConnectionDispatcher.hpp"
 
 namespace DoubleDispatch {
@@ -19,7 +19,7 @@ void MySqlDBConnection::Dispatch(IConnectionDispatcher& connection_dispatcher) {
 
 int MySqlDBConnection::Query() const { return m_info.protocol_version; }
 
-Origin::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
+Assertion::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
 
 SqLiteDBConnection::SqLiteDBConnection() : m_protocol_version(0) {}
 

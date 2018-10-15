@@ -1,6 +1,6 @@
 /* Copyright (c) 2018 Yaroslav Stanislavyk <stl.ros@outlook.com> */
 
-#include "DBConnection3.hpp"
+#include "TypeStoring.hpp"
 
 namespace TypeStoring {
 
@@ -16,7 +16,7 @@ ConnectionType MySqlDBConnection::GetConnectionType() const {
 
 int MySqlDBConnection::Query() const { return m_info.protocol_version; }
 
-Origin::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
+Assertion::Info MySqlDBConnection::AdvancedQuery() const { return m_info; }
 
 SqLiteDBConnection::SqLiteDBConnection() : m_protocol_version(0) {}
 

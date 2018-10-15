@@ -2,7 +2,13 @@
 
 # DoubleDispatch #
 
-Example of use "Double Dispatch" pattern to avoid `static_cast` restrictions
+## Problem ##
+
+There is an interface with some count of the implementations. Need to use these implementations through the interface with 
+one limitation - without [RTTI](https://en.wikibooks.org/wiki/C%2B%2B_Programming/RTTI) mechanism in the "release".
+
+In this repository considered a three ways of solving such case using `static_cast` and the
+[Double Dispatch](https://en.wikipedia.org/wiki/Double_dispatch) pattern in particular.
 
 ## Platform ##
 
