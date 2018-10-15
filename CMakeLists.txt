@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(DoubleDispatch VERSION 1.0 LANGUAGES CXX)
+project(DoubleDispatch VERSION 1.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -31,20 +31,20 @@ conan_basic_setup()
 include(CTest)
 
 set(SRC_LIST
-    "src/DBConnection.hpp"
-    "src/DBConnection.cpp"
-    "src/DBConnection2.hpp"
-    "src/DBConnection2.cpp"
-    "src/ConnectionDispatcher.hpp"
-    "src/ConnectionDispatcher.cpp"
-    "src/DBConnection3.hpp"
-    "src/DBConnection3.cpp")
+    "src/Assertion/Assertion.hpp"
+    "src/Assertion/Assertion.cpp"
+    "src/DoubleDispatch/DoubleDispatch.hpp"
+    "src/DoubleDispatch/DoubleDispatch.cpp"
+    "src/DoubleDispatch/ConnectionDispatcher.hpp"
+    "src/DoubleDispatch/ConnectionDispatcher.cpp"
+    "src/TypeStoring/TypeStoring.hpp"
+    "src/TypeStoring/TypeStoring.cpp")
 
 add_executable(testrunner
     "${SRC_LIST}"
-    "test/ConnectionTest.cpp"
-    "test/ConnectionTest2.cpp"
-    "test/ConnectionTest3.cpp")
+    "test/AssertionTest.cpp"
+    "test/DoubleDispatchTest.cpp"
+    "test/TypeStoringTest.cpp")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

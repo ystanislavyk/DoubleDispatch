@@ -2,12 +2,12 @@
 
 #include <gtest/gtest.h>
 
-#include "DBConnection3.hpp"
+#include "TypeStoring/TypeStoring.hpp"
 
 namespace {
 
-void CheckMySqlConnection3Info(TypeStoring::IDBConnection& db_connection,
-                               const int expected_value) {
+void CheckMySqlConnectionInfo(TypeStoring::IDBConnection& db_connection,
+                              const int expected_value) {
   if (db_connection.GetConnectionType() != TypeStoring::ConnectionType::MYSQL) {
     throw std::bad_cast();
   }
@@ -16,9 +16,8 @@ void CheckMySqlConnection3Info(TypeStoring::IDBConnection& db_connection,
       static_cast<TypeStoring::MySqlDBConnection&>(db_connection).Query());
 }
 
-void CheckMySqlConnection3AdvancedInfo(
-    TypeStoring::IDBConnection& db_connection,
-    const std::string& expected_value) {
+void CheckMySqlConnectionAdvancedInfo(TypeStoring::IDBConnection& db_connection,
+                                      const std::string& expected_value) {
   if (db_connection.GetConnectionType() != TypeStoring::ConnectionType::MYSQL) {
     throw std::bad_cast();
   }
@@ -28,8 +27,8 @@ void CheckMySqlConnection3AdvancedInfo(
                 .server_version);
 }
 
-void CheckSqLiteConnection3Info(TypeStoring::IDBConnection& db_connection,
-                                const int expected_value) {
+void CheckSqLiteConnectionInfo(TypeStoring::IDBConnection& db_connection,
+                               const int expected_value) {
   if (db_connection.GetConnectionType() !=
       TypeStoring::ConnectionType::SQLITE) {
     throw std::bad_cast();
@@ -41,24 +40,24 @@ void CheckSqLiteConnection3Info(TypeStoring::IDBConnection& db_connection,
 
 TEST(MySqlConnection3InfoTest, GetInfoStaticCast) {
   TypeStoring::MySqlDBConnection mysql_connection("Some server", 7);
-  CheckMySqlConnection3Info(mysql_connection, 7);
-  ASSERT_THROW(CheckSqLiteConnection3Info(mysql_connection, 3), std::bad_cast);
+  CheckMySqlConnectionInfo(mysql_connection, 7);
+  ASSERT_THROW(CheckSqLiteConnectionInfo(mysql_connection, 3), std::bad_cast);
 }
 
 TEST(MySqlConnection3InfoTest, GetAdvancedInfoStaticCast) {
   TypeStoring::MySqlDBConnection mysql_connection("One more server", 7);
-  CheckMySqlConnection3AdvancedInfo(mysql_connection, "One more server");
+  CheckMySqlConnectionAdvancedInfo(mysql_connection, "One more server");
 }
 
 TEST(SqLiteConnection3InfoTest, GetInfoStaticCast) {
   TypeStoring::SqLiteDBConnection sqlite_connection(3);
-  ASSERT_THROW(CheckMySqlConnection3Info(sqlite_connection, 3), std::bad_cast);
-  CheckSqLiteConnection3Info(sqlite_connection, 3);
+  ASSERT_THROW(CheckMySqlConnectionInfo(sqlite_connection, 3), std::bad_cast);
+  CheckSqLiteConnectionInfo(sqlite_connection, 3);
 }
 
 TEST(SqLiteConnection3InfoTest, GetAdvancedInfoStaticCast) {
   TypeStoring::SqLiteDBConnection sqlite_connection(3);
-  ASSERT_THROW(CheckMySqlConnection3AdvancedInfo(sqlite_connection, ""),
+  ASSERT_THROW(CheckMySqlConnectionAdvancedInfo(sqlite_connection, ""),
                std::bad_cast);
 }
 

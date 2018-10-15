@@ -5,7 +5,7 @@
 #include <string>
 #include <utility>
 
-namespace Origin {
+namespace Assertion {
 
 struct Info {
   Info();
@@ -33,4 +33,4 @@ class MySqlDBConnection : public IDBConnection {
   Info m_info;
 };
 
-}  // namespace Origin
+}  // namespace Assertion
