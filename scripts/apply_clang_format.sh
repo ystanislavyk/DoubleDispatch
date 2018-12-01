@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-ARGUMENTS="-name "*.h" -o -name "*.hpp" -o -name "*.c" -o -name "*.cpp""
+### Constants
+readonly ARGUMENTS="-name "*.h" -o -name "*.hpp" -o -name "*.c" -o -name "*.cpp""
+
+########################################################################################################################
 
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
     find ${ARGUMENTS} |

@@ -20,20 +20,29 @@ In this repository considered a three ways of solving such case using `static_ca
 * GNU-compatible Make
 * POSIX-standard shell
 * A C++11-standard-compliant compiler
+* CMake with at least 3.5 version
+* Conan Package Manager
+* XCode Developer Tools (for macOS users)
 
 ## Build ##
 
 ### Build commands ###
 
-By default used clang compiler and debug mode.
+By default used **GCC** compiler and **Debug** mode. **Clang** is also supported
 
-Run in project root to build debug version with clang
+Run one of the following commands to build project
 
-`make` or `make clang-debug`
+`make` or `make gcc-debug` -  build project with **GCC** in **Debug** mode
 
-To build release version with gcc run the following command
+`make gcc-release` - build project with **GCC** in **Release** mode
 
-`make gcc-release`
+`make clang-debug` - build project with **Clang** in **Debug** mode
+
+`make clang-release` - build project with **Clang** in **Release** mode
+
+`make all` - build project with **GCC** and **Clang** in **Debug** and **Release** modes
+
+`make clean` - removes the build folder
 
 ## Run ##
 

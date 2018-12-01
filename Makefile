@@ -1,30 +1,45 @@
-CLANG_DEBUG_BUILD_DIR = build-clang-debug
-CLANG_RELEASE_BUILD_DIR = build-clang-release
+#% USAGE: Project building via Terminal/Linux console
+#%
+#% NOTE: GCC and debug mode is used by default
 
-GCC_DEBUG_BUILD_DIR = build-gcc-debug
-GCC_RELEASE_BUILD_DIR = build-gcc-release
+#% TARGETS:
+#%
+#%  $ make clean
+#%  $ make all
+#%  $ make gcc-debug
+#%  $ make gcc-release
+#%  $ make clang-debug
+#%  $ make clang-release
 
+.DEFAULT_GOAL=gcc-debug
 
-default:clang-debug
+### Constants
+BUILD_DIR := build
 
-clang-debug:
-	mkdir $(CLANG_DEBUG_BUILD_DIR)
-	cd $(CLANG_DEBUG_BUILD_DIR) && CXX=clang++ cmake .. && make -j$(nproc)
-
-clang-release:
-	mkdir $(CLANG_RELEASE_BUILD_DIR)
-	cd $(CLANG_RELEASE_BUILD_DIR) && CXX=clang++ cmake .. -DCMAKE_BUILD_TYPE=Release && make -j$(nproc)
-
-gcc-debug:
-	mkdir $(GCC_DEBUG_BUILD_DIR)
-	cd $(GCC_DEBUG_BUILD_DIR) && CXX=g++ cmake .. && make -j$(nproc)
-
-gcc-release:
-	mkdir $(GCC_RELEASE_BUILD_DIR)
-	cd $(GCC_RELEASE_BUILD_DIR) && CXX=g++ cmake .. -DCMAKE_BUILD_TYPE=Release && make -j$(nproc)
+########################################################################################################################
 
 clean:
-	rm -rf $(CLANG_DEBUG_BUILD_DIR)
-	rm -rf $(CLANG_RELEASE_BUILD_DIR)
-	rm -rf $(GCC_DEBUG_BUILD_DIR)
-	rm -rf $(GCC_RELEASE_BUILD_DIR)
+	rm -rf $(BUILD_DIR)
+
+all:
+	mkdir $(BUILD_DIR)
+	cd $(BUILD_DIR) && ../scripts/build_project.sh gcc Debug
+	cd $(BUILD_DIR) && ../scripts/build_project.sh gcc Release
+	cd $(BUILD_DIR) && ../scripts/build_project.sh clang Debug
+	cd $(BUILD_DIR) && ../scripts/build_project.sh clang Release
+
+gcc-debug:
+	mkdir $(BUILD_DIR)
+	cd $(BUILD_DIR) && ../scripts/build_project.sh gcc Debug
+
+gcc-release:
+	mkdir $(BUILD_DIR)
+	cd $(BUILD_DIR) && ../scripts/build_project.sh gcc Release
+
+clang-debug:
+	mkdir $(BUILD_DIR)
+	cd $(BUILD_DIR) && ../scripts/build_project.sh clang Debug
+
+clang-release:
+	mkdir $(BUILD_DIR)
+	cd $(BUILD_DIR) && ../scripts/build_project.sh clang Release
