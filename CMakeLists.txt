@@ -13,6 +13,9 @@ find_package(Threads REQUIRED)
 
 # Setting up Conan
 if (NOT EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
+    message("Adding the bintray repository (bincrafters)")
+    execute_process(COMMAND conan remote add bintray-bincrafters https://api.bintray.com/conan/bincrafters/public-conan)
+
     if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
         message(STATUS "Setting up dependencies with Conan (Clang)")
         execute_process(COMMAND conan install ${CMAKE_CURRENT_LIST_DIR} --profile ${CMAKE_CURRENT_LIST_DIR}/tools/conan/profile-clang --build missing)
@@ -21,7 +24,7 @@ if (NOT EXISTS "${CMAKE_BINARY_DIR}/conanbuildinfo.cmake")
         execute_process(COMMAND conan install ${CMAKE_CURRENT_LIST_DIR} --profile ${CMAKE_CURRENT_LIST_DIR}/tools/conan/profile-gcc --build missing)
     else()
         message(STATUS "Setting up dependencies with Conan (${CMAKE_CXX_COMPILER_ID})")
-        execute_process(COMMAND conan install ${CMAKE_CURRENT_LIST_DIR})
+        execute_process(COMMAND conan install ${CMAKE_CURRENT_LIST_DIR} --build missing)
     endif()
 endif()
 
