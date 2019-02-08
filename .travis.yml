@@ -12,9 +12,9 @@ script:
   - docker run build_ref /bin/bash -c "tools/clang_format_check.sh"
 
   # Build debug and release with GCC and run tests
-  - docker run build_ref /bin/bash -c "make gcc-debug && cd build/build-gcc-debug && ctest --output-on-failure"
-  - docker run build_ref /bin/bash -c "make gcc-release && cd build/build-gcc-release && ctest --output-on-failure"
+  - docker run build_ref /bin/bash -c "make gcc-debug && cd build/build-gcc-debug && ctest -V"
+  - docker run build_ref /bin/bash -c "make gcc-release && cd build/build-gcc-release && ctest -V"
 
   # Build debug and release with Clang and run tests
-  - docker run build_ref /bin/bash -c "make clang-debug && cd build/build-clang-debug && ctest --output-on-failure"
-  - docker run build_ref /bin/bash -c "make clang-release && cd build/build-clang-release && ctest --output-on-failure"
+  - docker run build_ref /bin/bash -c "make clang-debug && cd build/build-clang-debug && ctest -V"
+  - docker run build_ref /bin/bash -c "make clang-release && cd build/build-clang-release && ctest -V"

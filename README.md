@@ -12,17 +12,29 @@ In this repository considered a three ways of solving such case using `static_ca
 
 ## Platform ##
 
-* Linux
+* Linux (Ubuntu is pref)
 * macOS
 
-## Requirements ##
+## System Requirements ##
 
-* GNU-compatible Make
-* POSIX-standard shell
-* A C++11-standard-compliant compiler
-* CMake with at least 3.5 version
-* Conan Package Manager
-* XCode Developer Tools (for macOS users)
+**macOS**
+
+To build for macOS, you need [Xcode](https://developer.apple.com/xcode/downloads/).
+You will also need [CMake](https://cmake.org/) and [Conan](https://conan.io).
+
+[**Homebrew**](https://brew.sh/)
+
+```
+brew install cmake conan
+```
+
+**Linux**
+
+For Ubuntu, you'll need the following dependencies:
+
+```
+sudo apt-get install g++ cmake clang clang-format clang-tidy libclang-dev python-pip conan 
+```
 
 ## Build ##
 
